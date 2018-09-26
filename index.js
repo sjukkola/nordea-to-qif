@@ -5,8 +5,13 @@ const file = fs.readFileSync('transactions.txt')
 
 const [, , ...transactions] = file.split("\n");
 
-const formatted = transactions.map((t) => {
+const formatted = transactions.reduce((r, t) => {
     const [entryDate, , , amount, payee] = t.split('\t');
+
+    if (typeof amount == 'undefined') {
+        return r;
+    } 
+
     const [day, month, year] = entryDate.split('.');
 
     const qif = `
@@ -15,8 +20,9 @@ T${amount.replace(",", ".")}
 P${payee}
 ^
 `;
-    return qif.trim();
-});
+    return r.concat(qif.trim());
+
+}, []);
 
 const text = '!Type:Bank\n' + formatted.join('\n');
 
