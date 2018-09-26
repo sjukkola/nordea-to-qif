@@ -1,0 +1,11 @@
+{
+  "name": "nordea-to-qif",
+  "version": "1.0.0",
+  "description": "Converts Nordea transaction list (tsv text file) to .qif for personal finance software usage ",
+  "main": "index.js",
+  "scripts": {
+    "parse": "node index.js"
+  },
+  "author": "Samu Jukkola <samujukkola@gmail.com>",
+  "license": "MIT"
+}
