@@ -1,1 +1,4 @@
+.DS_Store
 transactions.*
+tapahtumat*
+node_modules/
