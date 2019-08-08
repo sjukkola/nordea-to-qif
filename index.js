@@ -73,15 +73,15 @@ const convertFile = (filename) => {
   // .csv = OP, .txt Nordea
   const [name, format] = filename.split('.');
   let transactions, formattedTransaction;
-  console.log(format)
+
   const file = readFile(filename);
 
   switch (format) {
     case 'csv':
-      [, , ...transactions] = file.split("\n");
+      [, ...transactions] = file.split("\n");
       break;
     case 'txt':
-      [, ...transactions] = file.split("\n");
+      [, , ...transactions] = file.split("\n");
       break;
     default:
       throw new Error('Unsupported filetype.');
@@ -93,7 +93,7 @@ const convertFile = (filename) => {
   const qifFilename = `${name}.qif`;
   fs.writeFile(qifFilename, content, err => {
     if (err) throw err;
-    console.log(`${qifFilename} generated`);
+    console.info(`${qifFilename} generated`);
   });
 
 };
